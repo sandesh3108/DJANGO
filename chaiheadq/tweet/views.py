@@ -19,7 +19,7 @@ def tweetcreat(req):
             tweet = form.save(commit=False)
             tweet.user=req.user
             tweet.save()
-            return redirect('tweet_list')
+            return redirect('tweetlist')
     else:
         form=tweetforms()#import in above
 
@@ -41,10 +41,10 @@ def tweetedit(req,tweet_id):
     return render(req,'tweet_form.html',{'form':form})
 
 def tweetdelet(req,tweet_id):
-    tweet=get_object_or_404(tweet,pk=tweet_id,user=req.user)
+    tweets=get_object_or_404(tweet,pk=tweet_id,user=req.user)
     if req.method == 'POST':
-        tweet.delete()
-        return redirect('tweet_list')
-    return render(req,'tweet_comfirm_delete.html',{'tweet':tweet})
+        tweets.delete()
+        return redirect('tweetlist')
+    return render(req,'tweet_comfirm_delete.html',{'tweet':tweets})
 
 # .save(),delete() is inbuld function in django
