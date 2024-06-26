@@ -14,8 +14,10 @@ chai aur tweet
         <div class="card-body">
           <h5 class="card-title">{{tweet.user.username}}</h5>
           <p class="card-text">{{tweet.text}}</p>
+          {% if tweet.user == user %}
           <a href="{% url 'tweetedit' tweet.id %}" class="btn btn-primary">Edit</a>
           <a href="{% url 'tweetdelete' tweet.id %}" class="btn btn-danger">Delete</a>
+          {% endif %}
         </div>
       </div>
     {% endfor %}
